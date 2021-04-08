@@ -41,7 +41,7 @@ const Players = () => {
         <h2>Jugadores:</h2>
         <ul>
           {players &&
-            players.map(player => <li><h3>{player.name}</h3><p>Puntos: {player.points}</p></li>)
+            players.map((player, key) => <li key={key}><h3>{player.name}</h3><p>Puntos: {player.points}</p></li>)
           }
         </ul>
       </div>
