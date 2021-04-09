@@ -8,7 +8,7 @@ const Game = () => {
   useEffect(() => {
     const data = window.localStorage.getItem('players');
     setPlayers(JSON.parse(data));
-  }, [window.localStorage]);
+  }, []);
 
   // Function to start a new game
   const startNewGame = () => {
@@ -20,16 +20,43 @@ const Game = () => {
     }
   }
 
+  // Function to add points
+  const addPoints = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    
+    setPlayers(prev => prev.map(selectedPlayer => {
+      if(selectedPlayer.name === name) {
+        return {
+          name: selectedPlayer.name,
+          points: parseInt(selectedPlayer.points) + parseInt(value)
+        }
+      }
+
+      return selectedPlayer;
+    }));
+
+    e.target.value = 0;
+  }
+
   return (
     <section>
-      <aside>
-        <ul>
-          {players && players.map((player, key) => <li key={key}><h2>{player.name}</h2><p>{player.points}</p></li>)}
-        </ul>
-      </aside>
-      <article>
-        <button onClick={startNewGame}>Start a new game</button>
-      </article>
+      <h1>Puntaje:</h1>
+      <ul>
+        {players && players.map((player, key) => <li key={key}><h2>{player.name}</h2><p>{player.points}</p></li>)}
+      </ul>
+      <div>
+        <h3>Anotar Puntos</h3>
+        <form>
+          {players.map((player, key) =>
+            <fieldset key={key}>
+              <label htmlFor={player.name}>¿Cu&aacute;ntos puntos sum&oacute; {player.name}?</label>
+              <input type="number" name={player.name} onBlur={addPoints} defaultValue="0" />
+            </fieldset>
+          )}
+        </form>
+      </div>
+      <button onClick={startNewGame}>Nuevo Juego</button>
     </section>
   );
 };
