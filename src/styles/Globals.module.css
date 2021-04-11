@@ -1,0 +1,27 @@
+/* Variables */
+:root {
+  --white: #FFFFFF;
+  --purple: #3F116B;
+  --yellow: #F3C969;
+  --green: #06D6A0;
+  --pink: #EF476F;
+}
+
+/* Global Styles */
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+main {
+  background-image: linear-gradient(to bottom, #1C053D, #3F116B);
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

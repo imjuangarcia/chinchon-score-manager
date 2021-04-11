@@ -1,0 +1,147 @@
+.Container {
+  max-width: 360px;
+  width: 100%;
+  margin: auto;
+}
+
+.TitleContainer {
+  padding-top: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.Icon {
+  font-size: 3rem;
+}
+
+.Title {
+  font-size: 3rem;
+  font-family: 'Erica One', cursive;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, var(--yellow), #FF7800);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.Subtitle {
+  background-color: var(--pink);
+  padding: 0 .25rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  position: absolute;
+  bottom: -.75rem;
+  right: 2rem;
+  transform: rotate(-3deg);
+  color: var(--white);
+}
+
+.FormContainer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.FormContainer p {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 400;
+}
+
+.FormContainer form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.FormContainer input:not([type="submit"]) {
+  box-shadow: none;
+  border: .125rem solid var(--yellow);
+  border-radius: 1rem;
+  padding: .75rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  background: var(--purple);
+  color: var(--white);
+}
+
+.FormContainer input[type="submit"] {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  color: var(--purple);
+  font-family: 'Erica One', cursive;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, var(--yellow), #FF7800);
+  border: none;
+  line-height: 1;
+  letter-spacing: .5px;
+}
+
+.PlayersContainer {
+  margin-top: 2rem;
+}
+
+.PlayersContainer h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.PlayersContainer ul {
+  padding: 0;
+  list-style: none;
+  margin: 1rem 0;
+}
+
+.PlayersContainer ul li {
+  border-radius: .5rem;
+  background-color: var(--white);
+  padding: .5rem;
+  display: flex;
+  align-items: baseline;
+  margin: .5rem 0;
+}
+
+.PlayersContainer ul li span {
+  background: linear-gradient(to bottom, var(--yellow), #FF7800);
+  padding: .125rem .25rem;
+  border-radius: .25rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  margin-right: .25rem;
+}
+
+.PlayersContainer ul li h3 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: var(--purple);
+  flex: 1;
+}
+
+.PlayersContainer ul li p {
+  font-family: 'Nunito', sans-serif;
+  font-size: .8rem;
+  color: var(--pink);
+}
+
+.StartButton {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  color: var(--white);
+  font-family: 'Erica One', cursive;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, var(--pink), #B32144);
+  border: none;
+  line-height: 1;
+  letter-spacing: .5px;
+  text-shadow: 2px 2px var(--purple);
+}
