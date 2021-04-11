@@ -71,6 +71,7 @@
   font-size: 1rem;
   background: var(--purple);
   color: var(--white);
+  box-sizing: border-box;
 }
 
 .FormContainer input[type="submit"] {
