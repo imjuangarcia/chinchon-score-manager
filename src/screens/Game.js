@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Game = () => {
   const [players, setPlayers] = useState([]);
+  const [isScoreVisible, setIsScoreVisible] = useState(false);
 
   // Use Effect call to retrieve players
   useEffect(() => {
@@ -35,8 +36,14 @@ const Game = () => {
 
       return selectedPlayer;
     }));
+  }
 
-    e.target.value = 0;
+  // Function to save the data to localStorage
+  const updatePlayers = (e) => {
+    e.preventDefault();
+    window.localStorage.setItem('players', JSON.stringify(players));
+    e.target.reset();
+    setIsScoreVisible(false);
   }
 
   return (
@@ -45,18 +52,24 @@ const Game = () => {
       <ul>
         {players && players.map((player, key) => <li key={key}><h2>{player.name}</h2><p>{player.points}</p></li>)}
       </ul>
+      {isScoreVisible &&
+        <div>
+          <h3>Anotar Puntos</h3>
+          <form onSubmit={updatePlayers}>
+            {players.map((player, key) =>
+              <fieldset key={key}>
+                <label htmlFor={player.name}>¿Cu&aacute;ntos puntos sum&oacute; {player.name}?</label>
+                <input type="number" name={player.name} onBlur={addPoints} defaultValue="0" />
+              </fieldset>
+            )}
+            <input type="submit" value="Anotar" />
+          </form>
+        </div>
+      }
       <div>
-        <h3>Anotar Puntos</h3>
-        <form>
-          {players.map((player, key) =>
-            <fieldset key={key}>
-              <label htmlFor={player.name}>¿Cu&aacute;ntos puntos sum&oacute; {player.name}?</label>
-              <input type="number" name={player.name} onBlur={addPoints} defaultValue="0" />
-            </fieldset>
-          )}
-        </form>
+        <button onClick={() => setIsScoreVisible(true)}>Anotar Puntos</button>
+        <button onClick={startNewGame}>Nuevo Juego</button>
       </div>
-      <button onClick={startNewGame}>Nuevo Juego</button>
     </section>
   );
 };
