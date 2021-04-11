@@ -1,11 +1,26 @@
 // Global Imports
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Players = () => {
   // State
   const [name, setName] = useState('');
   const [players, setPlayers] = useState([]);
+
+  // Use Effect call to check for existent players
+  useEffect(() => {
+    const data = window.localStorage.getItem('players');
+    
+    if(data !== null) {
+      const retrieveOldPlayers = window.confirm(`Hemos encontrado un juego en curso: ${JSON.parse(data).map(player => `${player.name}: ${player.points} puntos`)}. ¿Quieres seguir jugándolo?`);
+      
+      if(retrieveOldPlayers) {
+        window.location.href = '/score';
+      } else {
+        window.localStorage.removeItem('players');
+      }
+    }
+  }, []);
 
   // Store the player name on input change
   const setPlayerName = (e) => {
@@ -34,7 +49,7 @@ const Players = () => {
       <h1>Chinch&oacute;n Score</h1>
       <p>¿Qui&eacute;nes juegan?</p>
       <form onSubmit={savePlayer}>
-        <input type="text" placeholder="Nombre aquí" onChange={setPlayerName} />
+        <input type="text" placeholder="Nombre aquí" onChange={setPlayerName} required />
         <input type="submit" value="Agregar" />
       </form>
       <div>
