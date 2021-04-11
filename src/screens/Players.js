@@ -48,6 +48,22 @@ const Players = () => {
     window.location.href = '/score';
   }
 
+  // Function to delete the player
+  const deletePlayer = (e) => {
+    const previousState = [...players];
+    players.map(selectedPlayer => {
+      if(selectedPlayer.name === e.target.dataset.player) {
+        const index = previousState.indexOf(selectedPlayer);
+        if (index !== -1) {
+          previousState.splice(index, 1);
+          return setPlayers(previousState);
+        }
+      }
+
+      return players;
+    });
+  }
+
   return (
     <section className={ScreenStyles.Container}>
       <div className={ScreenStyles.TitleContainer}>
@@ -69,7 +85,16 @@ const Players = () => {
           <h2>Jugadores:</h2>
           <ul>
             {
-              players.map((player, key) => <li key={key}><h3><span>#{key + 1}</span> {player.name}</h3><p>{player.points} Puntos</p></li>)
+              players.map((player, key) => 
+                <li key={key}>
+                  <h3>
+                    <span>#{key + 1}</span>
+                    {player.name}
+                  </h3>
+                  {/* <p>{player.points} Puntos</p> */}
+                  <button onClick={deletePlayer} data-player={player.name}>Eliminar Jugador</button>
+                </li>
+              )
             }
           </ul>
           <button onClick={saveToLocalStorageAndProceed} className={ScreenStyles.StartButton} disabled={players.length < 2 ? true : false}>Comenzar Juego</button>
