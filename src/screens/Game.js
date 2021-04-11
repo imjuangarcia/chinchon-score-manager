@@ -132,9 +132,12 @@ const Game = () => {
         </ul>
       </div>
       {isScoreVisible &&
-        <div className={`${GameStyles.ModalWindow}`}>
+        <div className={`${GameStyles.ModalWindow}`} data-container="modal">
           <div className={`${ScreenStyles.FormContainer} ${GameStyles.FormContainer}`}>
-            <h3 className={ScreenStyles.Subtitle}>Anotar Puntos</h3>
+            <div className={GameStyles.ModalTitleContainer}>
+              <h3 className={ScreenStyles.Subtitle}>Anotar Puntos</h3>
+              <button onClick={() => setIsScoreVisible(false)} className={GameStyles.CloseModalButton}>X</button>
+            </div>
             <form onSubmit={updatePlayers}>
               {players.map((player, key) =>
                 <fieldset key={key}>

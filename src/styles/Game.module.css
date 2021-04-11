@@ -83,3 +83,18 @@
   background: linear-gradient(to bottom, var(--purple), #1C053D);
   color: var(--yellow);
 }
+
+.ModalTitleContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.CloseModalButton {
+  font-size: 1rem;
+  color: var(--white);
+  font-family: 'Nunito', sans-serif;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
