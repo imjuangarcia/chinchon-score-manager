@@ -41,9 +41,73 @@ const Game = () => {
   // Function to save the data to localStorage
   const updatePlayers = (e) => {
     e.preventDefault();
+
     window.localStorage.setItem('players', JSON.stringify(players));
     e.target.reset();
     setIsScoreVisible(false);
+    checkScore();
+  }
+
+  // Function to reduce score by ten
+  const reducePointsByTen = (e) => {
+    e.preventDefault();
+    
+    const previousElement = e.target.previousElementSibling;
+    // Simulate focus and blur events to trigger the change
+    previousElement.focus();
+    previousElement.value = -10;
+    previousElement.blur();
+  }
+
+  // Function to check if the score reached 100
+  const checkScore = () => {
+
+    // Check if any of the players reached 100 points
+    players.map(player => {
+      if(player.points >= 100) {
+        // If so, show an alert and trigger a new game
+        const isGameFinished = window.confirm(`El jugador ${player.name} ha perdido! Jugar la revancha?`)
+        
+        if(isGameFinished) {
+          // Reset points
+          setPlayers(prev => prev.map(selectedPlayer => {
+            return {
+              name: selectedPlayer.name,
+              points: 0
+            }
+          }));
+        } else {
+          // If they didn't want to play a new game
+          window.localStorage.removeItem('players');
+          window.location.href = '/';
+        }
+      }
+    });
+  }
+
+  // Function to run when someone does chinchon
+  const setWinner = (e) => {
+    e.preventDefault();
+
+    // Get the winner
+    const winner = e.target.dataset.player;
+    const isGameFinished = window.confirm(`El jugador ${winner} ha ganado! Jugar la revancha?`);
+
+    if(isGameFinished) {
+      // Reset points
+      setPlayers(prev => prev.map(selectedPlayer => {
+        return {
+          name: selectedPlayer.name,
+          points: 0
+        }
+      }));
+      
+      setIsScoreVisible(false);
+    } else {
+      // If they didn't want to play a new game
+      window.localStorage.removeItem('players');
+      window.location.href = '/';
+    }
   }
 
   return (
@@ -60,6 +124,8 @@ const Game = () => {
               <fieldset key={key}>
                 <label htmlFor={player.name}>¿Cu&aacute;ntos puntos sum&oacute; {player.name}?</label>
                 <input type="number" name={player.name} onBlur={addPoints} defaultValue="0" />
+                <button onClick={reducePointsByTen} data-player={player.name}>-10</button>
+                <button onClick={setWinner} data-player={player.name}>Chinch&oacute;n</button>
               </fieldset>
             )}
             <input type="submit" value="Anotar" />
