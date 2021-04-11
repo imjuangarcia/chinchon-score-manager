@@ -1,0 +1,85 @@
+.ActionsContainer {
+  display: flex;
+}
+
+.ActionsContainer button {
+  flex: 1;
+  border: none;
+  padding: .5rem;
+  border-radius: .5rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.AddScoreButton {
+  background: linear-gradient(to bottom, var(--yellow), #FF7800);
+  margin-right: .25rem;
+  color: var(--purple);
+}
+
+.NewGameButton {
+  background: linear-gradient(to bottom, var(--pink), #B32144);
+  margin-left: .25rem;
+  color: var(--white);
+}
+
+.ModalWindow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(239,71,111, .9);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.FormContainer {
+  max-width: 360px;
+  text-align: left;
+}
+
+.FormContainer form fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.FormContainer h3 {
+  position: relative;
+  display: inline;
+  right: 0;
+  bottom: 0;
+  background-color: var(--green);
+  border-radius: .25rem;
+  color: var(--purple);
+}
+
+.FormContainer form fieldset input {
+  width: 100%;
+}
+
+.FormContainer form fieldset button {
+  margin-top: .5rem;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-right: .5rem;
+  border-radius: .25rem;
+}
+
+.Secondary {
+  background: linear-gradient(to bottom, var(--yellow), #FF7800);
+  color: var(--purple);
+}
+
+.Primary {
+  background: linear-gradient(to bottom, var(--purple), #1C053D);
+  color: var(--yellow);
+}

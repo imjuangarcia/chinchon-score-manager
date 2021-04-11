@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-// Style Import
+// Style Imports
 import '../styles/Globals.module.css';
 import ScreenStyles from '../styles/Players.module.css';
 

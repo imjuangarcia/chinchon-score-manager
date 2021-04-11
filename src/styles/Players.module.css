@@ -55,6 +55,13 @@
   margin-top: 1rem;
 }
 
+.FormContainer label {
+  font-family: 'Nunito', sans-serif;
+  font-size: .9rem;
+  color: var(--white);
+  margin-bottom: .5rem;
+}
+
 .FormContainer input:not([type="submit"]) {
   box-shadow: none;
   border: .125rem solid var(--yellow);
