@@ -1,6 +1,5 @@
 // Global Imports
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 // Style Imports
 import '../styles/Globals.module.css';
@@ -44,8 +43,9 @@ const Players = () => {
   }
 
   // Function to save data to localStorage
-  const saveToLocalStorage = () => {
+  const saveToLocalStorageAndProceed = () => {
     window.localStorage.setItem('players', JSON.stringify(players));
+    window.location.href = '/score';
   }
 
   return (
@@ -72,7 +72,7 @@ const Players = () => {
               players.map((player, key) => <li key={key}><h3><span>#{key + 1}</span> {player.name}</h3><p>{player.points} Puntos</p></li>)
             }
           </ul>
-          <Link to='/score' onClick={saveToLocalStorage} className={ScreenStyles.StartButton}>Comenzar Juego</Link>
+          <button onClick={saveToLocalStorageAndProceed} className={ScreenStyles.StartButton} disabled={players.length < 2 ? true : false}>Comenzar Juego</button>
         </div> : ''
       }
     </section>

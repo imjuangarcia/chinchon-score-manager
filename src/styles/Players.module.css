@@ -152,4 +152,11 @@
   line-height: 1;
   letter-spacing: .5px;
   text-shadow: 2px 2px var(--purple);
+  width: 100%;
+}
+
+.StartButton:disabled {
+  background: #999;
+  color: #7a7a7a;
+  text-shadow: none;
 }
