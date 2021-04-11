@@ -82,6 +82,7 @@ const Game = () => {
           window.location.href = '/';
         }
       }
+      return players;
     });
   }
 
