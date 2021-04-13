@@ -1,0 +1,19 @@
+.FooterContainer {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.FooterText {
+  font-family: 'Nunito', sans-serif;
+  color: var(--white);
+  font-size: .75rem;
+  font-weight: 400;
+}
+
+.FooterLink {
+  color: var(--yellow);
+}
+
+.FooterLink:hover {
+  text-decoration: none;
+}

@@ -1,6 +1,9 @@
 // Global Imports
 import React, { useState, useEffect } from 'react';
 
+// Component Imports
+import Footer from '../components/Footer';
+
 // Style Imports
 import '../styles/Globals.module.css';
 import ScreenStyles from '../styles/Players.module.css';
@@ -117,46 +120,49 @@ const Game = () => {
   }
 
   return (
-    <section className={ScreenStyles.Container}>
-      <div className={ScreenStyles.TitleContainer}>
-        <span className={ScreenStyles.Icon}>🃏</span>
-        <h1 className={ScreenStyles.Title}>
-          Chinch&oacute;n
-        </h1>
-        <span className={ScreenStyles.Subtitle}>Anotador</span>
-      </div>
-      <div className={ScreenStyles.PlayersContainer}>
-        <h2>Puntaje:</h2>
-        <ul>
-          {players && players.map((player, key) => <li key={key}><h3>{player.name}</h3><p>{player.points} Puntos</p></li>)}
-        </ul>
-      </div>
-      {isScoreVisible &&
-        <div className={`${GameStyles.ModalWindow}`} data-container="modal">
-          <div className={`${ScreenStyles.FormContainer} ${GameStyles.FormContainer}`}>
-            <div className={GameStyles.ModalTitleContainer}>
-              <h3 className={ScreenStyles.Subtitle}>Anotar Puntos</h3>
-              <button onClick={() => setIsScoreVisible(false)} className={GameStyles.CloseModalButton}>X</button>
-            </div>
-            <form onSubmit={updatePlayers}>
-              {players.map((player, key) =>
-                <fieldset key={key}>
-                  <label htmlFor={player.name}>¿Cu&aacute;ntos puntos sum&oacute; {player.name}?</label>
-                  <input type="number" name={player.name} onBlur={addPoints} defaultValue="0" />
-                  <button onClick={reducePointsByTen} data-player={player.name} className={GameStyles.Secondary}>⭐ -10</button>
-                  <button onClick={setWinner} data-player={player.name} className={GameStyles.Primary}>💯 Chinch&oacute;n</button>
-                </fieldset>
-              )}
-              <input type="submit" value="Anotar" />
-            </form>
-          </div>
+    <React.Fragment>
+      <section className={ScreenStyles.Container}>
+        <div className={ScreenStyles.TitleContainer}>
+          <span className={ScreenStyles.Icon}>🃏</span>
+          <h1 className={ScreenStyles.Title}>
+            Chinch&oacute;n
+          </h1>
+          <span className={ScreenStyles.Subtitle}>Anotador</span>
         </div>
-      }
-      <div className={GameStyles.ActionsContainer}>
-        <button onClick={() => setIsScoreVisible(true)} className={GameStyles.AddScoreButton}>Anotar Puntos</button>
-        <button onClick={startNewGame} className={GameStyles.NewGameButton}>Nuevo Juego</button>
-      </div>
-    </section>
+        <div className={ScreenStyles.PlayersContainer}>
+          <h2>Puntaje:</h2>
+          <ul>
+            {players && players.map((player, key) => <li key={key}><h3>{player.name}</h3><p>{player.points} Puntos</p></li>)}
+          </ul>
+        </div>
+        {isScoreVisible &&
+          <div className={`${GameStyles.ModalWindow}`} data-container="modal">
+            <div className={`${ScreenStyles.FormContainer} ${GameStyles.FormContainer}`}>
+              <div className={GameStyles.ModalTitleContainer}>
+                <h3 className={ScreenStyles.Subtitle}>Anotar Puntos</h3>
+                <button onClick={() => setIsScoreVisible(false)} className={GameStyles.CloseModalButton}>X</button>
+              </div>
+              <form onSubmit={updatePlayers}>
+                {players.map((player, key) =>
+                  <fieldset key={key}>
+                    <label htmlFor={player.name}>¿Cu&aacute;ntos puntos sum&oacute; {player.name}?</label>
+                    <input type="number" name={player.name} onBlur={addPoints} defaultValue="0" />
+                    <button onClick={reducePointsByTen} data-player={player.name} className={GameStyles.Secondary}>⭐ -10</button>
+                    <button onClick={setWinner} data-player={player.name} className={GameStyles.Primary}>💯 Chinch&oacute;n</button>
+                  </fieldset>
+                )}
+                <input type="submit" value="Anotar" />
+              </form>
+            </div>
+          </div>
+        }
+        <div className={GameStyles.ActionsContainer}>
+          <button onClick={() => setIsScoreVisible(true)} className={GameStyles.AddScoreButton}>Anotar Puntos</button>
+          <button onClick={startNewGame} className={GameStyles.NewGameButton}>Nuevo Juego</button>
+        </div>
+      </section>
+      <Footer />
+    </React.Fragment>
   );
 };
 

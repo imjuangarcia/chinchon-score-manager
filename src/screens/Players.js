@@ -1,6 +1,9 @@
 // Global Imports
 import React, { useState, useEffect } from 'react';
 
+// Component Imports
+import Footer from '../components/Footer';
+
 // Style Imports
 import '../styles/Globals.module.css';
 import ScreenStyles from '../styles/Players.module.css';
@@ -65,42 +68,45 @@ const Players = () => {
   }
 
   return (
-    <section className={ScreenStyles.Container}>
-      <div className={ScreenStyles.TitleContainer}>
-        <span className={ScreenStyles.Icon}>🃏</span>
-        <h1 className={ScreenStyles.Title}>
-          Chinch&oacute;n
-        </h1>
-        <span className={ScreenStyles.Subtitle}>Anotador</span>
-      </div>
-      <div className={ScreenStyles.FormContainer}>
-        <p>¿Qui&eacute;nes juegan?</p>
-        <form onSubmit={savePlayer}>
-          <input type="text" placeholder="Nombre aquí" onChange={setPlayerName} required />
-          <input type="submit" value="Agregar Jugador" />
-        </form>
-      </div>
-      {players.length > 0 ?
-        <div className={ScreenStyles.PlayersContainer}>
-          <h2>Jugadores:</h2>
-          <ul>
-            {
-              players.map((player, key) => 
-                <li key={key}>
-                  <h3>
-                    <span>#{key + 1}</span>
-                    {player.name}
-                  </h3>
-                  {/* <p>{player.points} Puntos</p> */}
-                  <button onClick={deletePlayer} data-player={player.name}>Eliminar Jugador</button>
-                </li>
-              )
-            }
-          </ul>
-          <button onClick={saveToLocalStorageAndProceed} className={ScreenStyles.StartButton} disabled={players.length < 2 ? true : false}>Comenzar Juego</button>
-        </div> : ''
-      }
-    </section>
+    <React.Fragment>
+      <section className={ScreenStyles.Container}>
+        <div className={ScreenStyles.TitleContainer}>
+          <span className={ScreenStyles.Icon}>🃏</span>
+          <h1 className={ScreenStyles.Title}>
+            Chinch&oacute;n
+          </h1>
+          <span className={ScreenStyles.Subtitle}>Anotador</span>
+        </div>
+        <div className={ScreenStyles.FormContainer}>
+          <p>¿Qui&eacute;nes juegan?</p>
+          <form onSubmit={savePlayer}>
+            <input type="text" placeholder="Nombre aquí" onChange={setPlayerName} required />
+            <input type="submit" value="Agregar Jugador" />
+          </form>
+        </div>
+        {players.length > 0 ?
+          <div className={ScreenStyles.PlayersContainer}>
+            <h2>Jugadores:</h2>
+            <ul>
+              {
+                players.map((player, key) => 
+                  <li key={key}>
+                    <h3>
+                      <span>#{key + 1}</span>
+                      {player.name}
+                    </h3>
+                    {/* <p>{player.points} Puntos</p> */}
+                    <button onClick={deletePlayer} data-player={player.name}>Eliminar Jugador</button>
+                  </li>
+                )
+              }
+            </ul>
+            <button onClick={saveToLocalStorageAndProceed} className={ScreenStyles.StartButton} disabled={players.length < 2 ? true : false}>Comenzar Juego</button>
+          </div> : ''
+        }
+      </section>
+      <Footer />
+    </React.Fragment>
   );
 };
 
