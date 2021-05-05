@@ -71,27 +71,47 @@ const Game = () => {
   const checkScore = () => {
 
     // Check if any of the players reached 100 points
-    players.map(player => {
+    players.map((player) => {
       if(player.points >= 100) {
-        // If so, show an alert and trigger a new game
-        const isGameFinished = window.confirm(`El jugador ${player.name} ha perdido! Jugar la revancha?`)
-        
-        if(isGameFinished) {
-          // Reset points
-          setPlayers(prev => prev.map(selectedPlayer => {
-            return {
-              name: selectedPlayer.name,
-              points: 0
-            }
-          }));
+        // If so, we check how many players are currently in the game
+        if(players.length > 2) {
+          // If we have more than 2, we delete the player that lost, and carry on
+          const isPlayerEliminated = window.confirm(`El jugador ${player.name} ha perdido! Seguir jugando?`)
+
+          if(isPlayerEliminated) {
+            removePlayer(player);
+          } else {
+            // If they didn't want to keep playing
+            window.localStorage.removeItem('players');
+            window.location.href = '/';
+          }
         } else {
-          // If they didn't want to play a new game
-          window.localStorage.removeItem('players');
-          window.location.href = '/';
+          // If we only have 2, show an alert and trigger a new game
+          const isGameFinished = window.confirm(`El jugador ${player.name} ha perdido! Jugar la revancha?`)
+          
+          if(isGameFinished) {
+            // Reset points
+            setPlayers(prev => prev.map(selectedPlayer => {
+              return {
+                name: selectedPlayer.name,
+                points: 0
+              }
+            }));
+          } else {
+            // If they didn't want to play a new game
+            window.localStorage.removeItem('players');
+            window.location.href = '/';
+          }
         }
       }
       return players;
     });
+  }
+
+  // Function to delete a player
+  const removePlayer = (deletedPlayer) => {
+    const filteredArray = players.filter(player => player !== deletedPlayer);
+    setPlayers(filteredArray);
   }
 
   // Function to run when someone does chinchon
