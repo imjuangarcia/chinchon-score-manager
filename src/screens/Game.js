@@ -1,5 +1,5 @@
 // Global Imports
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // Component Imports
 import Footer from '../components/Footer';
@@ -11,7 +11,9 @@ import GameStyles from '../styles/Game.module.css';
 
 const Game = () => {
   const [players, setPlayers] = useState([]);
+  const [shufflerIndex, setShufflerIndex] = useState(0);
   const [isScoreVisible, setIsScoreVisible] = useState(false);
+  const shufflerRef = useRef(null);
 
   // Use Effect call to retrieve players
   useEffect(() => {
@@ -53,6 +55,20 @@ const Game = () => {
     window.localStorage.setItem('players', JSON.stringify(players));
     e.target.reset();
     setIsScoreVisible(false);
+
+    // To determine who shuffled and who should be next
+    const previousShuffler = parseInt(shufflerRef.current.dataset.index);
+
+    // If the index matches an existing user, we set the shuffler to be that player
+    const shuffler = players.filter((player, index) => index === previousShuffler + 1);
+    if(shuffler.length === 1) {
+      setShufflerIndex(previousShuffler + 1);
+    } else {
+      // If not, we set it to the first player again
+      setShufflerIndex(0);
+    };
+
+    // Then we check the score
     checkScore();
   }
 
@@ -152,7 +168,12 @@ const Game = () => {
         <div className={ScreenStyles.PlayersContainer}>
           <h2>Puntaje:</h2>
           <ul>
-            {players && players.map((player, key) => <li key={key}><h3>{player.name}</h3><p>{player.points} Puntos</p></li>)}
+            {players && players.map((player, key) => <li key={key}>
+                <h3>{player.name}</h3>
+                {shufflerIndex === key && <h4 ref={shufflerRef} data-index={key}>Baraja</h4>}
+                <p>{player.points} Puntos</p>
+              </li>
+            )}
           </ul>
         </div>
         {isScoreVisible &&

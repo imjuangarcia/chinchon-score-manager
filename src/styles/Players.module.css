@@ -134,9 +134,10 @@
   font-family: 'Nunito', sans-serif;
   font-size: .8rem;
   color: var(--pink);
+  margin-left: .25rem;
 }
 
-.PlayersContainer ul li button {
+.PlayersContainer ul li button, .PlayersContainer ul li h4 {
   background-color: var(--pink);
   border-radius: .25rem;
   padding: .25rem;
@@ -144,6 +145,8 @@
   color: var(--white);
   border: none;
   font-family: 'Nunito', sans-serif;
+  font-size: .8rem;
+  font-weight: 400;
 }
 
 .StartButton {
